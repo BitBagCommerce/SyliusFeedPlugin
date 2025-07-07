@@ -39,7 +39,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Workflow\Registry;
-use Symfony\Component\Workflow\Workflow;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Throwable;
 use Twig\Environment;
@@ -87,7 +86,7 @@ final class GenerateBatchHandler
     /**
      * @psalm-suppress UndefinedDocblockClass
      *
-     * @param FilesystemOperator|FilesystemInterface $filesystem
+     * @param FilesystemOperator $filesystem
      */
     public function __construct(
         FeedRepositoryInterface $feedRepository,
@@ -312,7 +311,7 @@ final class GenerateBatchHandler
         return fopen('php://temp', 'w+b');
     }
 
-    private function applyErrorTransition(Workflow $workflow, FeedInterface $feed): void
+    private function applyErrorTransition(WorkflowInterface $workflow, FeedInterface $feed): void
     {
         // if the feed is already errored we won't want to throw an exception
         if ($feed->isErrored()) {
