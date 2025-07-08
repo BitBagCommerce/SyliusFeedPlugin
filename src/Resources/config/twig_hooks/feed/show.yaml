@@ -1,0 +1,38 @@
+sylius_twig_hooks:
+    hooks:
+        sylius_admin.feed.show.content:
+            sections:
+                template: '@SetonoSyliusFeedPlugin/Admin/feed/Show/content/sections.html.twig'
+                priority: 0
+
+        'sylius_admin.feed.show.content.header':
+            breadcrumbs:
+                template: '@SyliusAdmin/shared/crud/show/content/header/breadcrumbs.html.twig'
+                priority: 0
+
+        sylius_admin.feed.show.content.header.title_block:
+            actions:
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/content/header/title_block/actions.html.twig'
+                priority: 0
+
+        'sylius_admin.feed.show.content.header.title_block.actions':
+            generate_feed:
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/content/header/title_block/actions/generate_feed.html.twig'
+                priority: 200
+            edit:
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/content/header/title_block/actions/edit.html.twig'
+                priority: 100
+
+        sylius_admin.feed.show.content.sections:
+            state_info:
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/content/sections/state_info.html.twig'
+                priority: 100
+            details:
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/content/sections/details.html.twig'
+                priority: 0
+
+        sylius_admin.feed.show#javascripts:
+            scripts:
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/scripts.html.twig'
+                priority: 0
+

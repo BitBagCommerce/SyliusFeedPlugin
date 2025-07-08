@@ -21,7 +21,7 @@ setono_sylius_feed_admin_feed_show:
         _sylius:
             section: admin
             permission: true
-            template: "@SetonoSyliusFeedPlugin/Admin/Feed/show.html.twig"
+            template: "@SyliusAdmin/shared/crud/show.html.twig"
 
 setono_sylius_feed_admin_feed_process:
     path: /feeds/{id}/process
