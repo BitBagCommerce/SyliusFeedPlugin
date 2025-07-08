@@ -26,18 +26,17 @@
                             </td>
                             <td>
                                 <div class="ui icon input" style="width: 100%;position: relative;">
-                                    <div class="ui pointing below label teal"
-                                         style="position:absolute; right: 10px; top: -100%; display: none; margin-top: -0.51em; margin-bottom: 1em; background-color: #00B5AD !important; border-color: #00B5AD !important; color: #FFFFFF !important; line-height: 1; vertical-align: baseline; padding: 0.5833em 0.833em; font-weight: bold; border-radius: 0.28571429rem; transition: background 0.1s ease; font-size: 0.85714286rem;z-index: 1;"
+                                    <div class="ui pointing below label teal link-copied-label"
                                          id="link-copied-{{ loop.parent.loop.index }}-{{ loop.index }}">
                                         {{ 'setono_sylius_feed.ui.link_copied'|trans }}
                                     </div>
                                     <input id="link-{{ loop.parent.loop.index }}-{{ loop.index }}" type="text"
                                            value="{{ setono_sylius_feed_generate_feed_url(feed, channel, locale) }}"
-                                           readonly style="width: 100%;font-size: 16px;vertical-align: super;">
-                                    <i class="copy bi bi-copy" data-link-id="link-{{ loop.parent.loop.index }}-{{ loop.index }}"
+                                           readonly class="input-feed-url">
+                                    <i class="copy bi bi-copy copy-feed-link" data-link-id="link-{{ loop.parent.loop.index }}-{{ loop.index }}"
                                        data-link-copied-id="link-copied-{{ loop.parent.loop.index }}-{{ loop.index }}"
                                        data-content="{{ 'setono_sylius_feed.ui.click_to_copy'|trans }}"
-                                       data-position="top right" style="position: absolute; top: 3px; right: 4px; background: white; height: 100%; border-radius: 0em 0.28571429rem 0.28571429rem 0em; width: 1.671429em; text-align: center; cursor: pointer;">
+                                       data-position="top right">
                                         {{ ux_icon('tabler:copy', {'class': 'icon', 'style': 'vertical-align: text-top;'}) }}
                                     </i>
                                 </div>

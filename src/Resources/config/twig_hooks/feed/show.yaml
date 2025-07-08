@@ -36,3 +36,7 @@ sylius_twig_hooks:
                 template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/scripts.html.twig'
                 priority: 0
 
+        sylius_admin.feed.show#stylesheets:
+            seo:
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/stylesheets.html.twig'
+                priority: 0

@@ -1,26 +1,25 @@
-<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=64650c919cb6672861886e2f"
-        type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-        crossorigin="anonymous"></script>
 <script>
-    let timers = {};
+    const timers = {};
 
-    $('i.copy').on('click', function () {
-        const linkId = $(this).data('link-id');
-        const linkCopiedId = $(this).data('link-copied-id');
+    Array.from(document.querySelectorAll('i.copy')).map((element) => {
+        element.addEventListener('click', (e) => {
+            const linkId = element.dataset.linkId;
+            const linkCopiedId = element.dataset.linkCopiedId;
 
-        const link = $('#' + linkId).get(0);
-        const $linkCopied = $('#' + linkCopiedId);
+            const link = element.parentElement.querySelector('input');
+            const linkCopied = element.parentElement.querySelector('div#' + linkCopiedId);
 
-        link.select();
-        link.setSelectionRange(0, 9999);
+            link.select();
+            link.setSelectionRange(0, 9999);
 
-        document.execCommand('copy');
+            document.execCommand('copy');
 
-        $linkCopied.show();
+            linkCopied.style.display = 'block';
 
-        clearTimeout(timers[linkId]);
-        timers[linkId] = setTimeout(function () {
-            $linkCopied.hide();
-        }, 3000);
-    });
+            clearTimeout(timers[linkId]);
+            timers[linkId] = setTimeout(function () {
+                linkCopied.style.display = 'none';
+            }, 3000);
+        });
+    })
 </script>
