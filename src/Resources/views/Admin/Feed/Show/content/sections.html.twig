@@ -1,0 +1,5 @@
+<div class="page-body">
+    <div class="container-xl">
+        {% hook 'sections' with { feed: hookable_metadata.context.resource.feed|default(null) } %}
+    </div>
+</div>
