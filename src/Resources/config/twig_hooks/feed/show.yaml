@@ -2,7 +2,7 @@ sylius_twig_hooks:
     hooks:
         sylius_admin.feed.show.content:
             sections:
-                template: '@SetonoSyliusFeedPlugin/Admin/feed/Show/content/sections.html.twig'
+                template: '@SetonoSyliusFeedPlugin/Admin/Feed/Show/content/sections.html.twig'
                 priority: 0
 
         'sylius_admin.feed.show.content.header':
