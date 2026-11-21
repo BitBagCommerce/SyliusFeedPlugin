@@ -10,3 +10,6 @@
 /behat.yml
 /phpspec.yml
 /.phpunit.result.cache
+/tests/TestApplication/.env.local
+/tests/TestApplication/.env.*.local
+/var/

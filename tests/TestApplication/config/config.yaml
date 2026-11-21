@@ -1,0 +1,7 @@
+imports:
+    - { resource: "services_test.php" }
+
+services:
+    # symfony/http-client is a dev dependency here, so FrameworkBundle does not register the PSR-18 client on its own.
+    Psr\Http\Client\ClientInterface:
+        class: Symfony\Component\HttpClient\Psr18Client

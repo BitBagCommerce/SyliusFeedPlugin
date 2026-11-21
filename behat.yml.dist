@@ -1,5 +1,5 @@
 imports:
-    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites.php
     - tests/Behat/Resources/suites.yml
 
 default:
@@ -13,34 +13,15 @@ default:
             files_path: "%paths.base%/tests/Behat/Resources/fixtures/"
             base_url: "http://localhost:8080/"
             default_session: symfony
-            javascript_session: chrome
             sessions:
                 symfony:
                     symfony: ~
-                chrome:
-                    selenium2:
-                        browser: chrome
-                        capabilities:
-                            browserName: chrome
-                            browser: chrome
-                            version: ""
-                            marionette: null # https://github.com/Behat/MinkExtension/pull/311
-                            chrome:
-                                switches:
-                                    - "start-fullscreen"
-                                    - "start-maximized"
-                                    - "no-sandbox"
-                            extra_capabilities:
-                                unexpectedAlertBehaviour: accept
-                firefox:
-                    selenium2:
-                        browser: firefox
             show_auto: false
 
         FriendsOfBehat\SymfonyExtension:
-            bootstrap: tests/Application/config/bootstrap.php
+            bootstrap: vendor/sylius/test-application/config/bootstrap.php
             kernel:
-                class: Tests\Setono\SyliusFeedPlugin\Application\Kernel
+                class: Sylius\TestApplication\Kernel
 
         FriendsOfBehat\VariadicExtension: ~
 
