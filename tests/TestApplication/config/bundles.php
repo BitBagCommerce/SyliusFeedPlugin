@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// The feed plugin has to be registered before SyliusGridBundle (see README), so it is inserted ahead of it here.
 $bundles = require dirname(__DIR__, 3) . '/vendor/sylius/test-application/config/bundles.php';
 
 $pluginBundles = [
