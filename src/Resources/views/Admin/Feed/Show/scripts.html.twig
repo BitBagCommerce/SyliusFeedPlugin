@@ -1,0 +1,25 @@
+<script>
+    const timers = {};
+
+    Array.from(document.querySelectorAll('i.copy')).map((element) => {
+        element.addEventListener('click', (e) => {
+            const linkId = element.dataset.linkId;
+            const linkCopiedId = element.dataset.linkCopiedId;
+
+            const link = element.parentElement.querySelector('input');
+            const linkCopied = element.parentElement.querySelector('div#' + linkCopiedId);
+
+            link.select();
+            link.setSelectionRange(0, 9999);
+
+            document.execCommand('copy');
+
+            linkCopied.style.display = 'block';
+
+            clearTimeout(timers[linkId]);
+            timers[linkId] = setTimeout(function () {
+                linkCopied.style.display = 'none';
+            }, 3000);
+        });
+    })
+</script>

@@ -1,0 +1,6 @@
+imports:
+    - { resource: "services_test.php" }
+
+services:
+    Psr\Http\Client\ClientInterface:
+        class: Symfony\Component\HttpClient\Psr18Client

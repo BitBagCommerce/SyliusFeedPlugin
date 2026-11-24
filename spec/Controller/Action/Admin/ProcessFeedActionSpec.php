@@ -31,8 +31,12 @@ class ProcessFeedActionSpec extends ObjectBehavior
         $this->shouldHaveType(ProcessFeedAction::class);
     }
 
-    public function it_dispatches_and_returns_redirect_response(MessageBusInterface $commandBus, UrlGeneratorInterface $urlGenerator): void
-    {
+    public function it_dispatches_and_returns_redirect_response(
+        MessageBusInterface $commandBus,
+        UrlGeneratorInterface $urlGenerator,
+        TranslatorInterface $translator,
+    ): void {
+        $translator->trans("setono_sylius_feed.feed_generation_triggered")->willReturn("Feed generation triggered");
         $commandBus->dispatch(new ProcessFeed(1))->willReturn(new Envelope(new stdClass()));
         $urlGenerator->generate('setono_sylius_feed_admin_feed_show', ['id' => 1])->willReturn('path');
 

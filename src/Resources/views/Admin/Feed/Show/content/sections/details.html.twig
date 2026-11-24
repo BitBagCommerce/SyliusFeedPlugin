@@ -1,0 +1,67 @@
+{% set feed = hookable_metadata.context.resource %}
+
+{% if workflow_has_marked_place(feed, constant('Setono\\SyliusFeedPlugin\\Workflow\\FeedGraph::STATE_READY')) or workflow_has_marked_place(feed, constant('Setono\\SyliusFeedPlugin\\Workflow\\FeedGraph::STATE_PROCESSING')) %}
+    <div class="card pb-3 mb-3">
+        <table class="table card-table table-vcenter datatable" {{ sylius_test_html_attribute('feed-grid-table') }}>
+            <thead>
+            <tr>
+                <th class="text-body">{{ 'sylius.ui.channel'|trans }}</th>
+                <th class="text-body">{{ 'sylius.ui.locale'|trans }}</th>
+                <th class="text-body">{{ 'setono_sylius_feed.ui.link'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody {{ sylius_test_html_attribute('feed-grid-table-body') }}>
+                {% for channel in feed.channels %}
+                    {% for locale in channel.locales %}
+                        <tr class="item">
+                            <td>
+                                <div class="fw-medium">
+                                    {{ channel.name }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="fw-medium">
+                                    {{ locale.name }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ui icon input" style="width: 100%;position: relative;">
+                                    <div class="ui pointing below label teal link-copied-label"
+                                         id="link-copied-{{ loop.parent.loop.index }}-{{ loop.index }}">
+                                        {{ 'setono_sylius_feed.ui.link_copied'|trans }}
+                                    </div>
+                                    <input id="link-{{ loop.parent.loop.index }}-{{ loop.index }}" type="text"
+                                           value="{{ setono_sylius_feed_generate_feed_url(feed, channel, locale) }}"
+                                           readonly class="input-feed-url">
+                                    <i class="copy bi bi-copy copy-feed-link" data-link-id="link-{{ loop.parent.loop.index }}-{{ loop.index }}"
+                                       data-link-copied-id="link-copied-{{ loop.parent.loop.index }}-{{ loop.index }}"
+                                       data-content="{{ 'setono_sylius_feed.ui.click_to_copy'|trans }}"
+                                       data-position="top right">
+                                        {{ ux_icon('tabler:copy', {'class': 'icon', 'style': 'vertical-align: text-top;'}) }}
+                                    </i>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        <div class="col-12 col-md-4 fw-bold">{{ 'setono_sylius_feed.ui.unprocessed_feed_header'|trans }}</div>
+        <div class="col-12 col-md-8" {{ sylius_test_html_attribute('feed-info') }}>{{ 'setono_sylius_feed.ui.unprocessed_feed_body'|trans }}</div>
+    </div>
+{% endif %}
+
+{% if feed.violations|length > 0 %}
+    <div class="card mb-3">
+        <div class="card-body">
+        <h2 class="ui header">{{ 'setono_sylius_feed.ui.violation_summary'|trans }}</h2>
+
+        <p>{{ 'setono_sylius_feed.ui.view_all_violations'|trans({'%path%' : path('setono_sylius_feed_admin_feed_violations_index', {'id' : feed.id})})|raw }}</p>
+
+        {{ render(controller('setono_sylius_feed.controller.action.admin.severity_count', {'feed': feed.id})) }}
+        </div>
+    </div>
+{% endif %}
